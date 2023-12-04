@@ -1,13 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-    IsInt,
-    IsNotEmpty,
-    IsPositive,
-    IsString,
-    MinLength,
+  IsInt,
+  IsNotEmpty,
+  IsPositive,
+  IsString,
+  MinLength,
 } from 'class-validator';
+import { Agua } from '../../condiciones/entities/agua.entity';
+import { Cable } from '../../condiciones/entities/cable.entity';
+import { Internet } from '../../condiciones/entities/internet.entity';
+import { Luz } from '../../condiciones/entities/luz.entity';
 
-export class AreaDTO {
+export class DetalleDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
@@ -29,20 +33,20 @@ export class AreaDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Agua: number;
+  Agua: Agua;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Luz: number;
+  Luz: Luz;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Internet: number;
+  Internet: Internet;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Cable: number;
+  Cable: Cable;
 }

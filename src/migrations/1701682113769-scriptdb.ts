@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Scriptdb1701677331462 implements MigrationInterface {
-    name = 'Scriptdb1701677331462'
+export class Scriptdb1701682113769 implements MigrationInterface {
+    name = 'Scriptdb1701682113769'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`condicion_agua\` (\`Id_CondicionAgua\` int NOT NULL AUTO_INCREMENT, \`Descripcion\` varchar(60) NOT NULL, UNIQUE INDEX \`IDX_e4d28afbc7f3550a116dc764be\` (\`Descripcion\`), PRIMARY KEY (\`Id_CondicionAgua\`)) ENGINE=InnoDB`);

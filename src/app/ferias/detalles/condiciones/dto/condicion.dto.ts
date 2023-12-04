@@ -16,7 +16,7 @@ export class LuzDTO {
   @MinLength(1)
   Descripcion: string;
 }
-export class InternertDTO {
+export class InternetDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
