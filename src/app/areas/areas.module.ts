@@ -1,6 +1,8 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Global, Module } from '@nestjs/common';
-import { Areas } from './entities/area.entity'
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AreaControllers } from './controllers/area.controller';
+import { Areas } from './entities/area.entity';
+import { AreaService } from './services/area.service';
 @Global()
 @Module({
   imports: [
@@ -8,8 +10,8 @@ import { Areas } from './entities/area.entity'
       Areas,
     ]),
   ],
-  providers: [],
-  controllers: [],
-  exports: [TypeOrmModule],
+  providers: [AreaService],
+  controllers: [AreaControllers],
+  exports: [AreaService,TypeOrmModule],
 })
 export class AreasModule {}

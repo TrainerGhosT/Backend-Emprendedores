@@ -1,11 +1,11 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import * as morgan from 'morgan';
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as morgan from 'morgan';
+import { AppModule } from './app.module';
 import { CORS } from './constants';
 import { DatabaseConfig } from './database/db.datasource';
-import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,7 +22,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  const port = configService.get('PORT');
+  const port: number = configService.get('PORT');
   app.enableCors(CORS);
 
   app.setGlobalPrefix('api');
@@ -30,13 +30,13 @@ async function bootstrap() {
   const configSwagger = new DocumentBuilder()
     .setTitle('App SGFE - API')
     .setDescription(
-      'Aplicacion SGFE - Sistema de Gestion y Planificación de Ferias de E',
+      'Aplicacion SGFE - Sistema de Gestion y Planificación de Ferias de Emprendedores',
     )
     .setVersion('1.0')
     .build();
 
   const document = SwaggerModule.createDocument(app, configSwagger);
-  SwaggerModule.setup('docs ', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   const configDb = DatabaseConfig;
   await app.listen(port);

@@ -1,14 +1,18 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Detalles } from "../../core/entities/detalle.entity";
-import { ICable } from "../types/Condicion.type";
+import { ApiProperty } from '@nestjs/swagger';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Detalles } from '../../core/entities/detalle.entity';
+import { ICable } from '../types/Condicion.type';
 @Entity('condicion_cable')
 export class Cable implements ICable {
-    @PrimaryGeneratedColumn({ name: 'Id_CondicionCable', type: 'int' })
-    Id_Agua: number;
+  @ApiProperty()
+  @PrimaryGeneratedColumn({ name: 'Id_CondicionCable', type: 'int' })
+  Id_Agua: number;
 
-    @Column({ name: 'Descripcion', type: 'varchar', length: 60 })
-    Descripcion: string;
+  @ApiProperty()
+  @Column({ name: 'Descripcion', type: 'varchar', unique: true, length: 60 })
+  Descripcion: string;
 
-    @OneToMany(() => Detalles, (detalle) => detalle.Cable)
-    Detalle: Detalles[];
+  @ApiProperty()
+  @OneToMany(() => Detalles, (detalle) => detalle.Cable)
+  Detalle: Detalles[];
 }

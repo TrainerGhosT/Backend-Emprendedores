@@ -4,15 +4,16 @@ import {
   IsEmail,
   IsInt,
   IsNotEmpty,
-  IsNumberString,
   IsString,
-  MinLength,
+  MinLength
 } from 'class-validator';
+import { Areas } from 'src/app/areas/entities/area.entity';
+import { Roles } from '../../roles/entities/rol.entity';
 
 export class EmprendedorDTO {
   @ApiProperty()
   @IsNotEmpty()
-  @IsNumberString()
+  @IsString()
   @MinLength(6)
   Cedula: string;
 
@@ -61,10 +62,10 @@ export class EmprendedorDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Rol: number;
+  Rol: Roles;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Area: number;
+  Area: Areas;
 }
