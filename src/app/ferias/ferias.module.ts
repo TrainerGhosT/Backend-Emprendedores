@@ -1,6 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { FeriasController } from './core/controllers/feria.controller';
 import { Ferias } from './core/entities/feria.entity';
+import { FeriaService } from './core/services/feria.service';
 import { AguaControllers } from './detalles/condiciones/controllers/agua.controller';
 import { CableControllers } from './detalles/condiciones/controllers/cable.controllers';
 import { InternetControllers } from './detalles/condiciones/controllers/internet.controller';
@@ -31,8 +33,8 @@ import { Temas } from './temas/entities/tema.entity';
       Cable,
     ]),
   ],
-  providers: [DetalleService,AguaService, LuzService, InternetService, CableService],
-  controllers: [DetalleControllers, AguaControllers, LuzControllers, InternetControllers, CableControllers],
-  exports: [DetalleService, AguaService, LuzService, InternetService, CableService,TypeOrmModule],
+  providers: [FeriaService, DetalleService,AguaService, LuzService, InternetService, CableService],
+  controllers: [FeriasController,DetalleControllers, AguaControllers, LuzControllers, InternetControllers, CableControllers],
+  exports: [FeriaService, DetalleService, AguaService, LuzService, InternetService, CableService,TypeOrmModule],
 })
 export class FeriasModule {}

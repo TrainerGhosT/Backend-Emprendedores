@@ -10,6 +10,8 @@ import { DatabaseConfig } from './database/db.datasource';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+
+
   app.use(morgan('dev'));
 
   app.useGlobalPipes(
@@ -40,6 +42,8 @@ async function bootstrap() {
 
   const configDb = DatabaseConfig;
   await app.listen(port);
+
+  
 
   console.log(
     `* Base de datos ${configDb.database} de tipo: ${

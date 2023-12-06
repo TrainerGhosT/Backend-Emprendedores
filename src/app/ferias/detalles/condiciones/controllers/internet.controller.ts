@@ -7,7 +7,7 @@ import { InternetService } from "../services/internet.service";
 
 
 @ApiTags('Condicion Internet')
-@Controller('condicion-intenet')
+@Controller('condicion-internet')
 export class InternetControllers {
   constructor(private readonly intenetService: InternetService) { }
 

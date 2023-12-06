@@ -3,13 +3,14 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DetalleDTO } from '../dto/detalle.dto';
 import { DetalleService } from '../services/detalle.service';
 
+
 @ApiTags('Detalle Ferias')
 @Controller('detalles')
 export class DetalleControllers {
-  constructor(private readonly detalleService: DetalleService) {}
+    constructor(private readonly detalleService: DetalleService) { }
 
-  @Post('agregar-detalle')
-  public async CrearDetalle(@Body() body: DetalleDTO) {
+    @Post('agregar-detalle')
+    public async CrearDetalle(@Body() body: DetalleDTO) {
     return await this.detalleService.AgregarDetalle(body);
   }
 

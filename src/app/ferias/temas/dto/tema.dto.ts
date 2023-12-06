@@ -1,13 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-    IsDate,
-    IsInt,
-    IsNotEmpty,
-    IsString,
-    MinLength,
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsString,
+  MinLength,
 } from 'class-validator';
+import { Ferias } from './../../core/entities/feria.entity';
 
-export class AreaDTO {
+export class temaDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
@@ -33,5 +34,5 @@ export class AreaDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Feria: number;
+  Feria: Ferias;
 }

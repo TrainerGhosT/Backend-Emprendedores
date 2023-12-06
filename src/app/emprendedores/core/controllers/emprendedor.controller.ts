@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { EmprendedorDTO } from '../dto/emprendedor.dto';
 import { EmprendedorService } from './../services/emprendedor.service';
@@ -6,7 +6,7 @@ import { EmprendedorService } from './../services/emprendedor.service';
 @ApiTags('Emprendedores')
 @Controller('emprendedores')
 export class EmprendedorControllers {
-  constructor(private readonly emprendedorService: EmprendedorService) {}
+  constructor(private readonly emprendedorService: EmprendedorService) { }
 
   @Post('agregar-emprendedor')
   public async CrearEmprendedor(@Body() body: EmprendedorDTO) {
@@ -20,5 +20,10 @@ export class EmprendedorControllers {
   @Get('listar-emprendedores')
   public async ListarEmprendedores() {
     return await this.emprendedorService.ObtenerEmprendedores();
+  }
+
+  @Get(':id')
+  public async findUserById(@Param('id',) id: number) {
+    return await this.emprendedorService.findUserById(id);
   }
 }

@@ -9,6 +9,6 @@ export interface IEmprendedor {
     Telefono: string;
     Direccion: string;
     FechaNacimiento: Date;
-    Rol: Roles | number;
+    Rol: Roles;
     Area: Areas | number
 }

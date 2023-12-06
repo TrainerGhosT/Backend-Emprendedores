@@ -8,7 +8,7 @@ import {
   MinLength
 } from 'class-validator';
 import { Areas } from 'src/app/areas/entities/area.entity';
-import { Roles } from '../../roles/entities/rol.entity';
+import { ROLES } from '../contants/rol.constant';
 
 export class EmprendedorDTO {
   @ApiProperty()
@@ -62,7 +62,7 @@ export class EmprendedorDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Rol: Roles;
+  Rol: ROLES;
 
   @ApiProperty()
   @IsNotEmpty()

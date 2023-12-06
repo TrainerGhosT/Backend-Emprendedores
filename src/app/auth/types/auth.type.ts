@@ -3,18 +3,18 @@ import { Roles } from './../../emprendedores/roles/entities/rol.entity';
 
 
 export interface PayloadToken {
-  sub: string;
+  sub:  string;
   role: Roles;
 }
 
 export interface AuthBody {
-  username: string;
-  password: string;
+  Correo: string;
+  Contraseña: string;
 }
 
 export interface AuthResponse {
   accessToken: string;
-  user: Emprendedores;
+  emprendedor: Emprendedores;
 }
 
 export interface AuthTokenResult {
