@@ -2,6 +2,6 @@ import { Emprendedores } from "../../emprendedores/core/entities/emprendedor.ent
 import { Ferias } from '../../ferias/core/entities/feria.entity';
 export interface IParticipante { 
     
-    Emprendedor: Emprendedores | number; 
-    Feria: Ferias | number;
+    Emprendedor: Emprendedores; 
+    Feria: Ferias;
 }

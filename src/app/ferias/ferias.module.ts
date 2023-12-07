@@ -18,7 +18,9 @@ import { LuzService } from './detalles/condiciones/services/luz.service';
 import { DetalleControllers } from './detalles/core/controllers/detalle.controller';
 import { Detalles } from './detalles/core/entities/detalle.entity';
 import { DetalleService } from './detalles/core/services/detalle.service';
+import { TemaControllers } from './temas/controllers/tema.controller';
 import { Temas } from './temas/entities/tema.entity';
+import { TemaService } from './temas/services/tema.service';
 
 @Global()
 @Module({
@@ -33,8 +35,8 @@ import { Temas } from './temas/entities/tema.entity';
       Cable,
     ]),
   ],
-  providers: [FeriaService, DetalleService,AguaService, LuzService, InternetService, CableService],
-  controllers: [FeriasController,DetalleControllers, AguaControllers, LuzControllers, InternetControllers, CableControllers],
-  exports: [FeriaService, DetalleService, AguaService, LuzService, InternetService, CableService,TypeOrmModule],
+  providers: [FeriaService, TemaService, DetalleService,AguaService, LuzService, InternetService, CableService],
+  controllers: [FeriasController, TemaControllers,DetalleControllers, AguaControllers, LuzControllers, InternetControllers, CableControllers],
+  exports: [FeriaService, TemaService, DetalleService, AguaService, LuzService, InternetService, CableService,TypeOrmModule],
 })
 export class FeriasModule {}

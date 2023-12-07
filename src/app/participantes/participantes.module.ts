@@ -1,7 +1,8 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Global, Module } from '@nestjs/common';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ParticipanteControllers } from './controllers/participante.controller';
 import { Participantes } from './entities/participante.entity';
+import { ParticipanteService } from './services/participante.service';
 @Global()
 @Module({
   imports: [
@@ -9,8 +10,8 @@ import { Participantes } from './entities/participante.entity';
       Participantes,
     ]),
   ],
-  providers: [],
-  controllers: [],
-  exports: [TypeOrmModule],
+  providers: [ParticipanteService],
+  controllers: [ParticipanteControllers],
+  exports: [ParticipanteService, TypeOrmModule],
 })
 export class ParticipantesModule {}

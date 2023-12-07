@@ -23,7 +23,7 @@ export class EmprendedorControllers {
   }
 
   @Get(':id')
-  public async findUserById(@Param('id',) id: number) {
+  public async ListarEmprendedor(@Param('id',) id: number) {
     return await this.emprendedorService.findUserById(id);
   }
 }

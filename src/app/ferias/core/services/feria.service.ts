@@ -1,12 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Detalles } from '../../detalles/core/entities/detalle.entity';
+import { FeriaDTO } from './../dto/feria.dto';
+import { Ferias } from './../entities/feria.entity';
 
 import { ErrorManager } from './../../../utils/error.manager';
 
-import { FeriaDTO } from '../dto/feria.dto';
-import { Ferias } from '../entities/feria.entity';
+import { DetalleDTO } from '../../detalles/core/dto/detalle.dto';
 
 @Injectable()
 export class FeriaService {
@@ -16,7 +17,7 @@ export class FeriaService {
   ) {}
 
   public async AgregarFeria(
-    body: FeriaDTO & any
+    body: FeriaDTO & DetalleDTO
   ): Promise<Ferias & Detalles> {
       try {
       return await this.feriaRepository.query(
@@ -38,16 +39,19 @@ export class FeriaService {
           body.Cable,
         ],
       );
+        
+        
     } catch (error) {
       throw new BadRequestException(error.message);
     }
   }
 
-  public async ObtenerFerias(): Promise<Ferias[] & Detalles[]> {
+  public async ObtenerFerias(): Promise<Ferias[]> {
     try {
-      const ferias: Ferias[] & Detalles[] = await this.feriaRepository.query(
-        'call sp_listar_ferias()',
-      );
+      const ferias: Ferias[] = await this.feriaRepository.query('select * from ferias')
+      // const ferias: Ferias[] & Detalles[] = await this.feriaRepository.query(
+      //   'call sp_listar_ferias()',
+      // );
       if (ferias.length === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
@@ -59,4 +63,28 @@ export class FeriaService {
       throw ErrorManager.createSignatureError(error.message);
     }
   }
+
+  public async ObtenerFeria(Id_Feria: number): Promise<Ferias> {
+    try {
+     // const feria: Ferias = await this.feriaRepository.query('call sp_listar_feria_id(?)', [Id_Feria]);
+         const feria: Ferias = await this.feriaRepository
+        .createQueryBuilder('ferias')
+        .where({ Id_Feria })
+        .leftJoinAndSelect('ferias.Area', 'areas')
+        .leftJoinAndSelect('ferias.Detalle' , 'detalles')
+        .getOne();
+        
+      if (!feria) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'No se encontró resultado',
+        });
+      }
+     
+      return feria;
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
+
 }
