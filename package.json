@@ -2,7 +2,6 @@
   "name": "backend-api",
   "version": "0.0.1",
   "description": "",
-  "type": "commonjs",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -19,8 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "orm:init": "npx typeorm-ts-node-commonjs -d ./src/database/db.datasource.ts",
-    "m:gen": "set NODE_ENV=dev&& npm run orm:init migration:generate",
+    "orm:init": "npx typeorm-ts-node-esm migration:generate -d ./src/database/db.datasource.ts",
+    "m:gen": "set NODE_ENV=dev&& npm run orm:init migration:create",
     "m:run": "set NODE_ENV=dev&& npm run orm:init migration:run"
   },
   "dependencies": {
