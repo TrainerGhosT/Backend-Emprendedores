@@ -32,7 +32,7 @@ async function bootstrap() {
   const configSwagger = new DocumentBuilder()
     .setTitle('App SGFE - API')
     .setDescription(
-      'Aplicacion SGFE - Sistema de Gestion y Planificación de Ferias de Emprendedores',
+      'Aplicación SGFE - Sistema de Gestión y Planificación de Ferias de Emprendedores',
     )
     .setVersion('1.0')
     .build();
