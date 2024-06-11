@@ -8,13 +8,10 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post('login')
   async login(@Body() { Correo, Contraseña }: AuthDTO) {
-    const emprendedorValidate = await this.authService.validarEmprendedor(
-      Correo,
-      Contraseña,
-    );
+    const emprendedorValidate = await this.authService.validarEmprendedor(Correo, Contraseña);
 
     if (!emprendedorValidate) {
-      throw new UnauthorizedException('La Información No Es Válida');
+      throw new UnauthorizedException('La información no es válida. Por favor, revise los datos ingresados'); 
     }
 
     const jwt = await this.authService.generateJWT(emprendedorValidate);

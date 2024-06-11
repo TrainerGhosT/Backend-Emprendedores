@@ -50,9 +50,12 @@ export class AuthService {
     const getUser = await this.emprendedorService.findUserById(emprendedor.Id_Emprendedor);
 
     const payload: PayloadToken = {
-      role: getUser.Rol,
-      sub: getUser.Id_Emprendedor.toString()
+      sub: getUser.Id_Emprendedor.toString(),
+      role: getUser.Rol
     };
+
+    console.log("Payload return:", payload);
+    console.log("Info getUser:", getUser);
 
     return {
       accessToken: this.signJWT({

@@ -20,4 +20,5 @@ export class ErrorManager extends Error {
       throw new HttpException(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
 }

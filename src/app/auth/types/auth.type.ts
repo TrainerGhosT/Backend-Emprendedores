@@ -3,8 +3,8 @@ import { Roles } from './../../emprendedores/roles/entities/rol.entity';
 
 
 export interface PayloadToken {
-  sub:  string;
-  role: Roles;
+  sub: string;
+  role: Roles ;
 }
 
 export interface AuthBody {

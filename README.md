@@ -73,6 +73,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 =======
-# Proyecto-Emprendedores
-Sistema de Gestion y Planificación de Ferias de Emprendedores
->>>>>>> f77939a24c58a44d92930d95ed3caca386aa2174
+

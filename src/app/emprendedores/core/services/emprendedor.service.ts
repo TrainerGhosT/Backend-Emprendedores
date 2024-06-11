@@ -33,9 +33,8 @@ export class EmprendedorService {
           body.Direccion,
           body.FechaNacimiento,
           body.Rol,
-          body.Area
+          body.Area,
         ],
-        
       );
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
@@ -45,13 +44,14 @@ export class EmprendedorService {
   public async ObtenerEmprendedores(): Promise<Emprendedores[]> {
     try {
       const emprendedores: Emprendedores[] =
-        await this.emprendedorRepository
-          .query('select * from list_view_emprendedores;')
+        await this.emprendedorRepository.query(
+          'select * from list_view_emprendedores;',
+        );
 
       if (emprendedores.length === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
-          message: 'Error, No Se Encontraron Resultados',
+          message: 'Error, No se encontraron resultados',
         });
       }
       return emprendedores;
@@ -75,7 +75,7 @@ export class EmprendedorService {
           message: 'No se encontró resultado',
         });
       }
-     
+
       return emprendedor;
     } catch (error) {
       throw new NotFoundException(error.message);
@@ -87,7 +87,7 @@ export class EmprendedorService {
     value,
   }: {
     key: keyof EmprendedorDTO;
-    value: any;
+    value: string;
   }) {
     try {
       const emprendedor: Emprendedores = await this.emprendedorRepository
