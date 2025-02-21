@@ -6,7 +6,7 @@ import { ILuz } from '../types/Condicion.type';
 export class Luz implements ILuz {
   @ApiProperty()
   @PrimaryGeneratedColumn({ name: 'Id_CondicionLuz', type: 'int' })
-  Id_Agua: number;
+  Id_Luz: number;
 
   @ApiProperty()
   @Column({ name: 'Descripcion', type: 'varchar', unique: true, length: 60 })

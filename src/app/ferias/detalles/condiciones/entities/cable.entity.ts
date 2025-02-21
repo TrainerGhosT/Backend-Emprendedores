@@ -6,7 +6,7 @@ import { ICable } from '../types/Condicion.type';
 export class Cable implements ICable {
   @ApiProperty()
   @PrimaryGeneratedColumn({ name: 'Id_CondicionCable', type: 'int' })
-  Id_Agua: number;
+  Id_Cable: number;
 
   @ApiProperty()
   @Column({ name: 'Descripcion', type: 'varchar', unique: true, length: 60 })

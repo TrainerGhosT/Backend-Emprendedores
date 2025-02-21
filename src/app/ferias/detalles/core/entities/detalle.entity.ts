@@ -4,7 +4,8 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
+  
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Ferias } from '../../../core/entities/feria.entity';
@@ -58,8 +59,8 @@ export class Detalles implements IDetalle {
   @JoinColumn({ name: 'idCondicionCable' })
   Cable: Cable;
 
-  // Relaciones de Array(One To Many)
-  @ApiProperty()
-  @OneToMany(() => Ferias, (feria) => feria.Detalle)
-  Feria: Ferias[];
+  
+  @OneToOne(() => Ferias)
+  @JoinColumn({name : 'idFeria'})
+  Feria: Ferias;
 }

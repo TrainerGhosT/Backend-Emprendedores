@@ -52,5 +52,7 @@ async function bootstrap() {
   );
 
   console.log('* Aplicación SGFE Iniciada en el Puerto:', port);
+
+  console.log('* Documentación Swagger en:', `http://localhost:${port}/docs`);
 }
 bootstrap();

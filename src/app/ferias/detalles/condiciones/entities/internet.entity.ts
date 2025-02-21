@@ -6,7 +6,7 @@ import { IInternet } from '../types/Condicion.type';
 export class Internet implements IInternet {
   @ApiProperty()
   @PrimaryGeneratedColumn({ name: 'Id_CondicionInternet', type: 'int' })
-  Id_Agua: number;
+  Id_Internet: number;
 
   @ApiProperty()
   @Column({ name: 'Descripcion', type: 'varchar', unique: true, length: 60 })

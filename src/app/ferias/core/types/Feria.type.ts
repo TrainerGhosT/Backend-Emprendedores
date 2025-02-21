@@ -1,5 +1,5 @@
 import { Areas } from 'src/app/areas/entities/area.entity';
-import { Detalles } from '../../detalles/core/entities/detalle.entity';
+
 export interface IFeria { 
 
     Titulo: string
@@ -9,5 +9,5 @@ export interface IFeria {
     HoraInicio: Date;
     HoraFin: Date;
     Area: Areas;
-    Detalle: Detalles;
+    
 }

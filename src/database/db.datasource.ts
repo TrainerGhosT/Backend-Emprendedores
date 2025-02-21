@@ -3,7 +3,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 ConfigModule.forRoot({
-  envFilePath: `.${process.env.NODE_ENV}.env`,
+  envFilePath: '.dev.env',
 });
 
 const configService = new ConfigService();
@@ -12,7 +12,7 @@ export const DatabaseConfig: DataSourceOptions = {
   type: 'mysql',
   host: configService.get<string>('DB_Server'),
   port: configService.get<number>('DB_Port'),
-  username: configService.get<string>('DB_User'),
+  username: configService.get<string>('DB_Username'),
   password: configService.get<string>('DB_Password'),
   database: configService.get<string>('DB_Name'),
   entities: ['dist/**/*.entity{.ts,.js}'],
