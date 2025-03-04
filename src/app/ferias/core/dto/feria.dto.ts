@@ -1,8 +1,14 @@
-
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsInt, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MinLength,
+} from 'class-validator';
 import { Areas } from '../../../areas/entities/area.entity';
-import { Detalles } from '../../detalles/core/entities/detalle.entity';
+
 
 export class FeriaDTO {
   @ApiProperty()
@@ -41,12 +47,40 @@ export class FeriaDTO {
   @IsNotEmpty()
   @IsInt()
   Area: Areas;
-  
-  
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  Costo: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(4)
+  Lugar: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(4)
+  Ubicacion: string;
+
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
-  Detalle: Detalles;
-  
+  Agua: number;
 
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsInt()
+  Luz: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsInt()
+  Internet: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsInt()
+  Cable: number;
 }

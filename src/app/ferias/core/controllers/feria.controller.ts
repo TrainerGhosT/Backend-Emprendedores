@@ -1,10 +1,9 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { DetalleDTO } from '../../detalles/core/dto/detalle.dto';
-import { FeriaDTO } from '../dto/feria.dto';
-import { FeriaService } from '../services/feria.service';
 
+import { FeriaService } from '../services/feria.service';
+import { FeriaDTO } from '../dto/feria.dto';
 
 @ApiTags('Ferias')
 @Controller('ferias')
@@ -16,7 +15,7 @@ export class FeriasController {
     description: 'Registro Guardado Exitosamente',
   })
   @Post('agregar-feria')
-  public async CrearFeria(@Body() body: FeriaDTO & DetalleDTO) {
+  public async CrearFeria(@Body() body: FeriaDTO) {
         
     return await this.feriaService.AgregarFeria(body);
   }

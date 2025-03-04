@@ -7,7 +7,7 @@ import { Ferias } from './../entities/feria.entity';
 
 import { ErrorManager } from './../../../utils/error.manager';
 
-import { DetalleDTO } from '../../detalles/core/dto/detalle.dto';
+
 
 @Injectable()
 export class FeriaService {
@@ -17,7 +17,7 @@ export class FeriaService {
   ) {}
 
   public async AgregarFeria(
-    body: FeriaDTO & DetalleDTO
+    body: FeriaDTO
   ): Promise<Ferias & Detalles> {
       try {
       return await this.feriaRepository.query(
@@ -48,7 +48,7 @@ export class FeriaService {
 
   public async ObtenerFerias(): Promise<Ferias[]> {
     try {
-      const ferias: Ferias[] = await this.feriaRepository.query('select * from ferias')
+      const ferias: Ferias[] & Detalles[] = await this.feriaRepository.query('call sp_listar_ferias;');
       // const ferias: Ferias[] & Detalles[] = await this.feriaRepository.query(
       //   'call sp_listar_ferias()',
       // );
@@ -66,13 +66,13 @@ export class FeriaService {
 
   public async ObtenerFeria(Id_Feria: number): Promise<Ferias> {
     try {
-     // const feria: Ferias = await this.feriaRepository.query('call sp_listar_feria_id(?)', [Id_Feria]);
-         const feria: Ferias = await this.feriaRepository
-        .createQueryBuilder('ferias')
-        .where({ Id_Feria })
-        .leftJoinAndSelect('ferias.Area', 'areas')
-        .leftJoinAndSelect('ferias.Detalle' , 'detalles')
-        .getOne();
+     const feria: Ferias = await this.feriaRepository.query('call sp_listar_feria_id(?)', [Id_Feria]);
+        //  const feria: Ferias = await this.feriaRepository
+        // .createQueryBuilder('ferias')
+        // .where({ Id_Feria })
+        // .leftJoinAndSelect('ferias.Area', 'areas')
+        // .leftJoinAndSelect('ferias.Detalle' , 'detalles')
+        // .getOne();
         
       if (!feria) {
         throw new ErrorManager({

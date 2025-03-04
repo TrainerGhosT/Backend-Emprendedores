@@ -23,7 +23,7 @@ export class DetalleService {
 
   public async ObtenerDetalles(): Promise<Detalles[]> {
     try {
-      const detalle: Detalles[] = await this.detalleRepository.find();
+      const detalle: Detalles[] = await this.detalleRepository.query('select * from detalle_ferias;');
       if (detalle.length === 0) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
