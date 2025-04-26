@@ -12,3 +12,27 @@ export class ParticipanteDTO {
   @IsInt()
   Feria: number;
 }
+
+export class ParticipanteFeriaDTO { 
+
+  @ApiProperty()
+  Id_Participante: number;
+
+  @ApiProperty()
+  Fecha_Inscripcion: Date;
+
+  @ApiProperty()
+  Id_Feria: number;
+
+  @ApiProperty()
+  Titulo: string;
+
+  @ApiProperty()
+  Descripcion: string;
+
+  @ApiProperty()
+  FechaPublicacion: Date;
+
+  @ApiProperty()
+  Area: string;
+}

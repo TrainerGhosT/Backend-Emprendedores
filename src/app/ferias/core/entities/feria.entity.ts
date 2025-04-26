@@ -22,13 +22,18 @@ export class Ferias implements IFeria {
   @Column({ name: 'Titulo', type: 'varchar', length: 60, nullable: false })
   Titulo: string;
 
+  @Column({ name: 'Descripcion_Corta', type: 'varchar', length: 100, nullable: false })
+  Descripcion_Corta: string;
+
   @Column({
     name: 'Descripcion',
-    type: 'varchar',
-    length: 200,
+    type: 'text',
     nullable: false,
   })
   Descripcion: string;
+
+  @Column({ name: 'Imagen', type: 'varchar', length: 255, nullable: false })
+  Imagen: string;
 
   @Column({ name: 'Fecha_Inicio', type: 'date', nullable: false })
   FechaInicio: Date;

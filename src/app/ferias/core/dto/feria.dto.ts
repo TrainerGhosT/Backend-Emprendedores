@@ -4,6 +4,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   MinLength,
 } from 'class-validator';
@@ -21,6 +22,12 @@ export class FeriaDTO {
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
+  Descripcion_Corta: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(6)
   Descripcion: string;
 
   @ApiProperty()
@@ -29,19 +36,22 @@ export class FeriaDTO {
   FechaInicio: Date;
 
   @ApiProperty()
-  @IsNotEmpty()
   @IsDate()
+  @IsOptional()
   FechaFin: Date;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsDate()
+  
   HoraInicio: Date;
 
   @ApiProperty()
-  @IsNotEmpty()
-  @IsDate()
+  
   HoraFin: Date;
+
+  @ApiProperty()
+  @IsString()
+  Imagen: string;
 
   @ApiProperty()
   @IsNotEmpty()

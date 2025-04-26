@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ErrorManager } from '../../utils/error.manager';
@@ -38,26 +38,36 @@ export class ParticipanteService {
     }
 
 
-     public async ObtenerParticipantesById(Id_Emprendedor: number): Promise<Participantes[]> {
-    try {
-     // const feria: Ferias = await this.feriaRepository.query('call sp_listar_feria_id(?)', [Id_Feria]);
-        const participante: Participantes[] = await this.participanteRepository
-            .query('Select p.Id_Participante, p.idFeria , f.Titulo  from participantes p inner join ferias f on p.idFeria = f.Id_Feria where idEmprendedor = (?);', [Id_Emprendedor]);
-        // .createQueryBuilder('participantes')
-        // .where({ Id_Participante })
-        // .leftJoinAndSelect('participantes.Emprendedor', 'emprendedores')
-        // .leftJoinAndSelect('participantes.Feria' , 'ferias');
-        
-        if (participante.length === 0) {
-            throw new ErrorManager({
-                type: 'BAD_REQUEST',
-                message: 'Error, No se encontraron resultados',
-            });
+    public async ObtenerParticipantesById(Id_Emprendedor: number): Promise<any[]> {
+        try {
+            const participaciones = await this.participanteRepository
+                .query(`
+                    SELECT 
+                        p.Id_Participante,
+                        p.Fecha_Inscripcion,
+                        f.Id_Feria,
+                        f.Titulo,
+                        f.Descripcion,
+                        f.Fecha_Publicacion,
+                        a.Descripcion as Area
+                      
+                    FROM participantes p 
+                    INNER JOIN ferias f ON p.idFeria = f.Id_Feria 
+                    INNER JOIN areas a ON f.idArea = a.Id_Area
+                    WHERE p.idEmprendedor = ?
+                    ORDER BY p.Fecha_Inscripcion DESC
+                `, [Id_Emprendedor]);
+            
+            if (participaciones.length === 0) {
+                throw new ErrorManager({
+                    type: 'BAD_REQUEST',
+                    message: 'No se encontraron ferias asignadas para este emprendedor',
+                });
+            }
+         
+            return participaciones;
+        } catch (error) {
+            throw ErrorManager.createSignatureError(error.message);
         }
-     
-        return participante;
-    } catch (error) {
-      throw new NotFoundException(error.message);
     }
-  }
 }

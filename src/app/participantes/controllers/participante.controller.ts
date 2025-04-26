@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ParticipanteDTO } from '../dto/participante.dto';
+import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ParticipanteDTO, ParticipanteFeriaDTO } from '../dto/participante.dto';
 import { ParticipanteService } from '../services/participante.service';
 
 @ApiTags('Participantes')
@@ -31,8 +31,28 @@ export class ParticipanteControllers {
     return await this.participanteService.ObtenerParticipantesById(Id);
   }
   // Listar Ferias pasandole como parametro el ID del Emprendedor
-  // Esto para ver las ferias en las que está participando o está inscrito ese Usuario
+  // Esto para ver las ferias en las que está participando o está inscrito ese Emprendedor
  
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de ferias en las que participa o está inscrito el emprendedor',
+    type: ParticipanteFeriaDTO,
+    isArray: true
+})
+@ApiResponse({
+    status: 400,
+    description: 'No se encontraron ferias inscritas para este emprendedor',
+})
+@ApiParam({
+    name: 'id',
+    description: 'ID del emprendedor',
+    type: 'number'
+})
+@Get('listar-ferias-participante/:id')
+public async ListarFeriasByParticipante(@Param('id') Id: number) {
+    return await this.participanteService.ObtenerParticipantesById(Id);
+}
+
 
   // Listar los Emprendedores pasando como parametro el ID de Feria
   // Esto para ver los Usuarios (Emprendedores) que están inscritos en una feria especifica
