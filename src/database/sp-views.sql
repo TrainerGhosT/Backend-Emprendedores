@@ -49,7 +49,7 @@ create table ferias
         primary key,
     Titulo            varchar(60)                         not null,
     Descripcion_Corta varchar(150)                        not null,
-    Descripcion       text                                not null,
+    Descripcion       text                               null,
     Fecha_Inicio      date                                not null,
     Fecha_Fin         date                                null,
     Hora_Inicio       time                                not null,
@@ -67,8 +67,7 @@ create table contenido_ferias
         primary key,
     Titulo      varchar(60)  not null,
     Descripcion varchar(150) null,
-    HoraInicio  time         not null,
-    HoraFin     time         null,
+    HoraInicio  time         not null, 
     idFeria     int          null,
     constraint FK_d0440f1845df483c535c75a195b
         foreign key (idFeria) references ferias (Id_Feria)
