@@ -1,10 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsInt,
-  IsNotEmpty,
-  IsString,
-  MinLength
-} from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { Ferias } from './../../core/entities/feria.entity';
 
 export class temaDTO {
@@ -22,13 +17,7 @@ export class temaDTO {
 
   @ApiProperty()
   @IsNotEmpty()
-  
   HoraInicio: Date;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  
-  HoraFin: Date;
 
   @ApiProperty()
   @IsNotEmpty()

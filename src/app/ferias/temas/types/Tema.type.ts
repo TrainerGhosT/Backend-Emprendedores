@@ -1,13 +1,11 @@
-import { Ferias } from "../../core/entities/feria.entity";
+import { Ferias } from '../../core/entities/feria.entity';
 
-export interface ITema { 
-     Titulo: string;
+export interface ITema {
+  Titulo: string;
 
-    Descripcion: string;
-    
-    HoraInicio: Date;
+  Descripcion: string;
 
-    HoraFin: Date;
+  HoraInicio: Date;
 
-    Feria: Ferias | number;
+  Feria: Ferias | number;
 }

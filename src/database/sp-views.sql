@@ -333,3 +333,9 @@ BEGIN
 END$$
 
 DELIMITER;
+
+-- listar los temas por feria
+create view list_view_temas as
+select cf.Id_Tema, cf.Titulo , cf.Descripcion, cf.HoraInicio from contenido_ferias cf
+left join db_emprendedores.ferias f on f.Id_Feria = cf.idFeria
+where f.Id_Feria = (?)

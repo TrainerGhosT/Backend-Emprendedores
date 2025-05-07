@@ -10,7 +10,6 @@ import {
 } from 'class-validator';
 import { Areas } from '../../../areas/entities/area.entity';
 
-
 export class FeriaDTO {
   @ApiProperty()
   @IsNotEmpty()
@@ -42,12 +41,10 @@ export class FeriaDTO {
 
   @ApiProperty()
   @IsNotEmpty()
-  
-  HoraInicio: Date;
+  HoraInicio: string;
 
   @ApiProperty()
-  
-  HoraFin: Date;
+  HoraFin: string;
 
   @ApiProperty()
   @IsString()

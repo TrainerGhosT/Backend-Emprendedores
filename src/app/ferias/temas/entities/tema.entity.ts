@@ -23,17 +23,13 @@ export class Temas implements ITema {
     name: 'Descripcion',
     type: 'varchar',
     length: 150,
-    nullable: false,
+    nullable: true,
   })
   Descripcion: string;
 
   @ApiProperty()
   @Column({ name: 'HoraInicio', type: 'time', nullable: false })
   HoraInicio: Date;
-
-  @ApiProperty()
-  @Column({ name: 'HoraFin', type: 'time', nullable: false })
-  HoraFin: Date;
 
   @ApiProperty()
   @ManyToOne(() => Ferias, (feria) => feria.Tema)
